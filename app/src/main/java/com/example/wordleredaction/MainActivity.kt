@@ -21,6 +21,7 @@ import androidx.compose.material3.Text
 import androidx.compose.material3.TextField
 import androidx.compose.runtime.Composable
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
@@ -30,6 +31,7 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
+import androidx.compose.ui.text.input.ImeAction
 import com.example.wordleredaction.ui.theme.WordleRedactionTheme
 
 class MainActivity : ComponentActivity() {
@@ -71,6 +73,9 @@ fun WordleRedactionLayout() {
         )
         EditTextField(
             value = wordleResults,
+            keyboardOptions = KeyboardOptions.Default.copy(
+                imeAction = ImeAction.Done
+            ),
             onValueChange = { wordleResults = it },
             modifier = Modifier
                 .padding(bottom = 32.dp)
@@ -88,12 +93,14 @@ fun WordleRedactionLayout() {
 @Composable
 fun EditTextField(
     value: String,
+    keyboardOptions: KeyboardOptions,
     onValueChange: (String) -> Unit,
     modifier: Modifier = Modifier
 ) {
 
     TextField(
         value = value,
+        keyboardOptions = keyboardOptions,
         onValueChange = onValueChange,
         label = { Text(stringResource(R.string.paste_label)) },
         modifier = Modifier.fillMaxWidth()
