@@ -3,6 +3,7 @@ package com.example.wordleredaction
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import androidx.annotation.VisibleForTesting
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
@@ -107,7 +108,8 @@ fun WordleRedactionPreview() {
     }
 }
 
-private fun redactText(results: String): String {
+@VisibleForTesting
+internal fun redactText(results: String): String {
     val splitResults = results.split("\n").toTypedArray()
     if(splitResults.size >= 3) {
         splitResults[2] = "<redacted>"
